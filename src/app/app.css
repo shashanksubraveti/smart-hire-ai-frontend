@@ -241,3 +241,9 @@ pre {
     min-height: 190px;
   }
 }
+.selected-file {
+  margin-top: 10px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}

@@ -29,6 +29,10 @@
           />
           <span>Choose a PDF resume file</span>
         </div>
+
+        <p class="selected-file" *ngIf="selectedFile">
+          Selected file: {{ selectedFile.name }}
+        </p>
       </div>
 
       <div class="form-group">
@@ -42,7 +46,12 @@
         </textarea>
       </div>
 
-      <button class="primary-button" (click)="analyzeResume()" [disabled]="isLoading">
+      <button
+        class="primary-button"
+        type="button"
+        (click)="analyzeResume()"
+        [disabled]="!selectedFile || !jobDescription.trim() || isLoading"
+      >
         <span *ngIf="!isLoading">Analyze Resume</span>
         <span *ngIf="isLoading">Analyzing...</span>
       </button>
