@@ -88,4 +88,11 @@ Please make sure Spring Boot and Ollama are running.`;
         }
       });
   }
+
+  clearForm(): void {
+    this.selectedFile = null;
+    this.jobDescription = '';
+    this.analysisResult = '';
+    this.errorMessage = '';
+  }
 }

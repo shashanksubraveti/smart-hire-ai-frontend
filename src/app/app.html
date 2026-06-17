@@ -55,7 +55,14 @@
         <span *ngIf="!isLoading">Analyze Resume</span>
         <span *ngIf="isLoading">Analyzing...</span>
       </button>
-
+      <button
+        class="secondary-button"
+        type="button"
+        (click)="clearForm()"
+        [disabled]="isLoading"
+      >
+        Clear
+      </button>
       <p class="helper-text">
         Make sure Ollama and the Spring Boot backend are running before analysis.
       </p>
