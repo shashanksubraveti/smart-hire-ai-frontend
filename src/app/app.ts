@@ -72,8 +72,8 @@ export class App {
       error: (error) => {
         console.error('Backend error:', error);
 
-        this.errorMessage = 'Something went wrong. Please make sure Spring Boot and Ollama are running.';
-        this.analysisResult = '';
+        this.errorMessage = `Something went wrong.
+        Please make sure Spring Boot and Ollama are running.`;
         this.isLoading = false;
 
         this.changeDetectorRef.detectChanges();
