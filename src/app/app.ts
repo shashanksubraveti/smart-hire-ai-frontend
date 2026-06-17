@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ResumeAnalysisService } from './services/resume-analysis.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class App {
   isLoading: boolean = false;
 
   constructor(
-    private http: HttpClient,
+    private resumeAnalysisService: ResumeAnalysisService,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -46,44 +47,36 @@ export class App {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('resume', this.selectedFile);
-    formData.append('jobDescription', this.jobDescription);
-
     this.isLoading = true;
     this.changeDetectorRef.detectChanges();
 
     console.log('Sending request to backend...');
 
-    this.http.post(
-      'http://localhost:8080/api/resume/analyze',
-      formData,
-      { responseType: 'text' }
-    ).subscribe({
-      next: (response: string) => {
-        console.log('Backend response received:', response);
+    this.resumeAnalysisService
+      .analyzeResume(this.selectedFile, this.jobDescription)
+      .subscribe({
+        next: (response: string) => {
+          console.log('Backend response received:', response);
 
-        this.analysisResult = response;
-        this.errorMessage = '';
-        this.isLoading = false;
+          this.analysisResult = response;
+          this.errorMessage = '';
+          this.isLoading = false;
 
-        this.changeDetectorRef.detectChanges();
-      },
-      error: (error) => {
-        console.error('Backend error:', error);
+          this.changeDetectorRef.detectChanges();
+        },
+        error: (error: unknown) => {
+          console.error('Backend error:', error);
 
-        this.errorMessage = `Something went wrong.
-        Please make sure Spring Boot and Ollama are running.`;
-        this.isLoading = false;
+          this.errorMessage = `Something went wrong.
+Please make sure Spring Boot and Ollama are running.`;
+          this.analysisResult = '';
+          this.isLoading = false;
 
-        this.changeDetectorRef.detectChanges();
-      },
-      complete: () => {
-        console.log('Request completed');
-
-        this.isLoading = false;
-        this.changeDetectorRef.detectChanges();
-      }
-    });
+          this.changeDetectorRef.detectChanges();
+        },
+        complete: () => {
+          console.log('Request completed');
+        }
+      });
   }
 }
