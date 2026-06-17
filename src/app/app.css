@@ -1,0 +1,101 @@
+.page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.header p {
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.card,
+.result-card,
+.error-card {
+  max-width: 850px;
+  margin: 0 auto 25px auto;
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+input[type='file'] {
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed #9ca3af;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.result-card h2 {
+  margin-top: 0;
+}
+
+pre {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  background: #f9fafb;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.error-card {
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: bold;
+}
