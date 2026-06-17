@@ -27,7 +27,16 @@ export class App {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
+      const file = input.files[0];
+
+      if (file.type !== 'application/pdf') {
+        this.selectedFile = null;
+        this.errorMessage = 'Please upload only a PDF file.';
+        this.analysisResult = '';
+        return;
+      }
+
+      this.selectedFile = file;
       this.errorMessage = '';
       this.analysisResult = '';
     }
